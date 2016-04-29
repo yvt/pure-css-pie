@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pure CSS3 Animatable Pie Chart!</title>
+    <link rel="stylesheet" href="piechart.css" />
+    <style type="text/css">
+    html, body {
+      font-family: "Segoe UI", "Helvetica Neue";
+    }
+    body {
+      margin: 20px;
+      text-align: center;
+    }
+    h1 {
+      font-weight: 200;
+      color: #888;
+    }
+
+    /* Pie chart styles */
+    .demo-pie {
+      width: 200px;
+      height: 200px;
+      margin: 40px 20px;
+    }
+    .demo-pie i {
+      background: #70a080;
+    }
+
+    /* Arc */
+    .pure-css-pie.arc-pie i {
+      border: 16px solid #70a080;
+      border-right: none;
+      background: transparent;
+    }
+
+    /* The arc angle */
+    .pure-css-pie .pcp-rot {
+      transition: 800ms transform;
+    }
+    .pure-css-pie.angle0   .pcp-rot { transform: rotate(0deg); }
+    .pure-css-pie.angle90  .pcp-rot { transform: rotate(90deg); }
+    .pure-css-pie.angle180 .pcp-rot { transform: rotate(180deg); }
+    .pure-css-pie.angle270 .pcp-rot { transform: rotate(270deg); }
+    .pure-css-pie.angle315 .pcp-rot { transform: rotate(315deg); }
+    .pure-css-pie.angle360 .pcp-rot { transform: rotate(360deg); }
+
+    .pure-css-pie.angle0   .pcp-rot.half { transform: rotate(0deg); }
+    .pure-css-pie.angle90  .pcp-rot.half { transform: rotate(45deg); }
+    .pure-css-pie.angle180 .pcp-rot.half { transform: rotate(90deg); }
+    .pure-css-pie.angle270 .pcp-rot.half { transform: rotate(135deg); }
+    .pure-css-pie.angle315 .pcp-rot.half { transform: rotate(157.5deg); }
+    .pure-css-pie.angle360 .pcp-rot.half { transform: rotate(180deg); }
+
+    </style>
+  </head>
+  <body>
+    <h1>Pure CSS3 Animatable Pie Chart Demo</h1>
+    <div>
+      <div class="pure-css-pie demo-pie angle315">
+        <div class="pcp-part1"><i class="pcp-rot"></i><i class="pcp-rot half"></i></div>
+        <div class="pcp-part2"><div class="pcp-rot half"><s><i class="pcp-rot half"></i></s></div></div>
+      </div>
+      <div class="pure-css-pie demo-pie arc-pie angle315">
+        <div class="pcp-part1"><i class="pcp-rot"></i><i class="pcp-rot half"></i></div>
+        <div class="pcp-part2"><div class="pcp-rot half"><s><i class="pcp-rot half"></i></s></div></div>
+      </div>
+    </div>
+
+    <h2>Controls</h2>
+    <p id="group-angle">
+      <button data-class="angle0">0 deg</button>
+      <button data-class="angle90">90 deg</button>
+      <button data-class="angle180">180 deg</button>
+      <button data-class="angle270">270 deg</button>
+      <button data-class="angle315">315 deg</button>
+      <button data-class="angle360">360 deg</button>
+    </p>
+    
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script type="application/javascript">
+      $(function () {
+        var angleClasses = $("#group-angle button")
+          .map(function () { return $(this).data("class"); }).get();
+        $("#group-angle button").click(function () {
+          var className = $(this).data("class");
+          $.each(angleClasses, function () {
+            var theClass = String(this);
+            $(".demo-pie").toggleClass(theClass, theClass === className);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
